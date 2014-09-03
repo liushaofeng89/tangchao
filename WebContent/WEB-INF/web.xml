@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>tangchao</display-name>
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>LoginService</display-name>
+		<servlet-name>LoginService</servlet-name>
+		<servlet-class>tk.shaofeng.tangchao.service.LoginService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginService</servlet-name>
+		<url-pattern>/LoginService</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>RegisterService</display-name>
+		<servlet-name>RegisterService</servlet-name>
+		<servlet-class>tk.shaofeng.tangchao.service.RegisterService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterService</servlet-name>
+		<url-pattern>/RegisterService</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>QueryUserService</display-name>
+		<servlet-name>QueryUserService</servlet-name>
+		<servlet-class>tk.shaofeng.tangchao.service.QueryUserService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryUserService</servlet-name>
+		<url-pattern>/QueryUserService</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>RechargeByCardIdService</display-name>
+		<servlet-name>RechargeByCardIdService</servlet-name>
+		<servlet-class>tk.shaofeng.tangchao.service.RechargeByCardIdService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RechargeByCardIdService</servlet-name>
+		<url-pattern>/RechargeByCardIdService</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>QueryServiceInfo</display-name>
+		<servlet-name>QueryServiceInfo</servlet-name>
+		<servlet-class>tk.shaofeng.tangchao.service.QueryServiceInfo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryServiceInfo</servlet-name>
+		<url-pattern>/QueryServiceInfo</url-pattern>
+	</servlet-mapping>
+	
+	<!-- <filter>
+      <filter-name>RightCheckFilter</filter-name>
+      <filter-class>tk.shaofeng.tangchao.filter.RightCheckFilter</filter-class>
+    </filter> 
+    <filter-mapping>
+      <filter-name>RightCheckFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+	
+	
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+</web-app>

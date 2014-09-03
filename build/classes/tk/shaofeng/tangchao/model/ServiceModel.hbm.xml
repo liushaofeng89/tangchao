@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+    <class name="tk.shaofeng.tangchao.model.ServiceModel" table="serviceinfo">
+        <id name="id" column="ID" type="java.lang.Integer">
+        	<generator class="increment"></generator>
+        </id>
+        <property name="name" column="Name" type="java.lang.String"></property>
+        <property name="price" column="Price" type="java.lang.Float"></property>
+    </class>
+</hibernate-mapping>
