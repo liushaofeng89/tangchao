@@ -33,25 +33,8 @@
     	<![endif]-->
 		</head>
 		<body>
-			<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-          				</button>
-          				<a class="navbar-brand" href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;TangChao</a>
-        			</div>
-        			<div class="navbar-collapse collapse">
-          				<ul class="nav navbar-nav navbar-right">
-            				<li><a href="#"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;Admin</a></li>
-            				<li><a href="#"></a></li>
-          				</ul>
-        			</div>
-      			</div>
-    		</div>
+			
+			<jsp:include page="header.jsp"/>
 
     		<div class="container-fluid">
       			<div class="row">
@@ -68,7 +51,7 @@
 			          	</ul>
         			</div>
         			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        				<div class="well well-lg">亲，功能正在开发中哦...</div>
+        				<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         			</div>
       			</div>
     		</div>
@@ -78,6 +61,57 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
+    <script src="js/highcharts.js"></script>
+	<script src="js/modules/exporting.js"></script>
+	
+	<script type="text/javascript">
+		$(function () {
+		        $('#container').highcharts({
+		            chart: {
+		                type: 'spline'
+		            },
+		            title: {
+		                text: '2014年度唐潮美发业绩统计'
+		            },
+		            xAxis: {
+		                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+		                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		            },
+		            yAxis: {
+		                title: {
+		                    text: '元'
+		                },
+		                labels: {
+		                    formatter: function() {
+		                        return this.value +'元'
+		                    }
+		                }
+		            },
+		            tooltip: {
+		                crosshairs: true,
+		                shared: true
+		            },
+		            plotOptions: {
+		                spline: {
+		                    marker: {
+		                        radius: 4,
+		                        lineColor: '#666666',
+		                        lineWidth: 1
+		                    }
+		                }
+		            },
+		            series: [{
+		                name: 'Tokyo',
+		                marker: {
+		                    symbol: 'square'
+		                },
+		                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+		    
+		            }]
+		        });
+		    });
+    
+
+		</script>
   </body>
 </html>

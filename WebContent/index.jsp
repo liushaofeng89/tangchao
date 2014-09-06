@@ -33,25 +33,8 @@
     	<![endif]-->
 		</head>
 		<body>
-			<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-          				</button>
-          				<a class="navbar-brand" href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;TangChao</a>
-        			</div>
-        			<div class="navbar-collapse collapse">
-          				<ul class="nav navbar-nav navbar-right">
-            				<li><a href="#"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;Admin</a></li>
-            				<li><a href="#"></a></li>
-          				</ul>
-        			</div>
-      			</div>
-    		</div>
+		
+			<jsp:include page="header.jsp"/>
 
     		<div class="container-fluid">
       			<div class="row">

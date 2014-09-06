@@ -67,15 +67,15 @@
 		<url-pattern>/QueryServiceInfo</url-pattern>
 	</servlet-mapping>
 	
-	<!-- <filter>
+	<!-- 
+	<filter>
       <filter-name>RightCheckFilter</filter-name>
       <filter-class>tk.shaofeng.tangchao.filter.RightCheckFilter</filter-class>
     </filter> 
     <filter-mapping>
       <filter-name>RightCheckFilter</filter-name>
       <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
-	
+    </filter-mapping> -->
 	
 	<welcome-file-list>
 		<welcome-file>login.html</welcome-file>
