@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../jquerysrc/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/icon.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/demo.css">
+	<script type="text/javascript" src="../jquerysrc/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../jquerysrc/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+</head>
+<body style="text-align: center;">
+	
+	<div id="tt" class="easyui-tabs" tools="#tab-tools" style="width:1100px;height:520px;">
+		
+		<div title="密码修改" style="padding:20px;">
+			<p style="text-align: left;color:#bbb">注：尽量按照从上到下的顺序填写...</p>
+			<form>
+				<fieldset style="text-align: center">
+    				<legend>密码修改</legend>
+				    <table border="0">
+					<tr height="25px">
+						<td align="right">当前密码：</td><td><input id="pwd0" class="easyui-validatebox" type="password" size="22" onblur="check()"/></td><td id="flag0" width="120px"></td>
+					</tr>
+					<tr height="25px">
+						<td align="right">新密码：</td><td><input id="pwd1" class="easyui-validatebox" type="password" size="22" onblur="doCheck1()"/></td><td id="flag1" width="120px"></td>
+					</tr>
+					<tr height="25px">
+						<td align="right">重复密码：</td><td><input id="pwd2" class="easyui-validatebox" type="password" size="22" onblur="doCheck1()"/></td><td id="flag2" width="120px"></td>
+					</tr>
+					<tr height="25px">
+						<td align="right"></td><td></td><td></td>
+					</tr>
+					<tr height="25px">
+						<td colspan="3" align="center"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="modify()">确认修改</a></td>
+					</tr>
+				</table>
+				</fieldset>
+				
+			</form>
+		</div>
+		
+		<div title="员工密码修改" style="padding:20px;" style="overflow:hidden">
+			<p style="text-align: left;color:#bbb">注：尽量按照从上到下的顺序填写...</p>
+			<fieldset style="text-align: center">
+    				<legend>员工密码修改</legend>
+				    <table border="0">
+					<tr height="25px">
+						<td align="right">员工编号：</td><td><input id="id" class="easyui-validatebox" type="text" size="21" onblur="check()"/></td><td id="flag3" width="150px"></td>
+					</tr>
+					<tr height="25px">
+						<td align="right">新密码：</td><td><input id="pwd3" class="easyui-validatebox" type="password" size="22" onblur="doCheck2()"/></td><td id="flag4" width="150px"></td>
+					</tr>
+					<tr height="25px">
+						<td align="right">重复密码：</td><td><input id="pwd4" class="easyui-validatebox" type="password" size="22" onblur="doCheck2()"/></td><td id="flag5" width="150px"></td>
+					</tr>
+					<tr height="25px">
+						<td align="right"></td><td></td><td></td>
+					</tr>
+					<tr height="25px">
+						<td colspan="3" align="center"><a href="javascript:;" class="easyui-linkbutton" onclick="modify()">确认修改</a></td>
+					</tr>
+				
+				</table>
+				</fieldset>
+		</div>
+		
+	</div>
+	
+</body>
+</html>

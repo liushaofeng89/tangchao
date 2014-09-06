@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<filter>
+		<filter-name>RightCheck</filter-name>
+		<filter-class>tk.tangchao.filter.RightCheck</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>RightCheck</filter-name>
+		<url-pattern>/sys/*</url-pattern>
+	</filter-mapping>
+
+
+
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>tk.tangchao.servlet.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ModifySecurity</servlet-name>
+		<servlet-class>tk.tangchao.servlet.ModifySecurity</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CheckCode</servlet-name>
+		<servlet-class>tk.tangchao.servlet.CheckCode</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>JsonGenerate</servlet-name>
+		<servlet-class>tk.tangchao.servlet.JsonGenerate</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>tk.tangchao.servlet.Logout</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UserManage</servlet-name>
+		<servlet-class>tk.tangchao.servlet.UserManage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetImages</servlet-name>
+		<servlet-class>tk.tangchao.servlet.GetImages</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AchievementGenerate</servlet-name>
+		<servlet-class>tk.tangchao.servlet.AchievementGenerate</servlet-class>
+	</servlet>
+	<servlet>
+    <servlet-name>BusinessManage</servlet-name>
+    <servlet-class>tk.tangchao.servlet.BusinessManage</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>WebInfoManage</servlet-name>
+    <servlet-class>tk.tangchao.servlet.WebInfoManage</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FocusImageManage</servlet-name>
+    <servlet-class>tk.tangchao.servlet.FocusImageManage</servlet-class>
+  </servlet>
+  <servlet>
+        <servlet-name>InitServlet</servlet-name>
+    	<servlet-class>tk.tangchao.servlet.InitServlet</servlet-class>
+        <init-param>
+            <param-name>log4jFilePath</param-name>
+            <param-value>WEB-INF/log4j.properties</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+  <servlet>
+    <servlet-name>SingleAchievement</servlet-name>
+    <servlet-class>tk.tangchao.servlet.SingleAchievement</servlet-class>
+  </servlet>
+
+
+  
+
+
+
+
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/servlet/Login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ModifySecurity</servlet-name>
+		<url-pattern>/servlet/ModifySecurity</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CheckCode</servlet-name>
+		<url-pattern>/servlet/CheckCode</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JsonGenerate</servlet-name>
+		<url-pattern>/servlet/JsonGenerate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/servlet/Logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserManage</servlet-name>
+		<url-pattern>/servlet/UserManage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetImages</servlet-name>
+		<url-pattern>/servlet/GetImages</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AchievementGenerate</servlet-name>
+		<url-pattern>/servlet/AchievementGenerate</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BusinessManage</servlet-name>
+    <url-pattern>/servlet/BusinessManage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WebInfoManage</servlet-name>
+    <url-pattern>/servlet/WebInfoManage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+        <servlet-name>InitServlet</servlet-name>
+    	<url-pattern>/servlet/InitServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FocusImageManage</servlet-name>
+    <url-pattern>/servlet/FocusImageManage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SingleAchievement</servlet-name>
+    <url-pattern>/servlet/SingleAchievement</url-pattern>
+  </servlet-mapping>
+
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.html</location>
+	</error-page>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+</web-app>

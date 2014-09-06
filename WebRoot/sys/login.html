@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>欢迎使用唐潮美发沙龙业绩管理系统</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META http-equiv=Pragma content=no-cache>
+<link rel="shortcut icon" href="../images/logo.ico" />
+<LINK href="css/admin.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../js/jquery-1.7.1.js"></script>
+</HEAD>
+<BODY>
+<TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" bgColor=#002779 border=0>
+  <TR>
+    <TD align=middle>
+      <TABLE cellSpacing=0 cellPadding=0 width=468 border=0>
+        <TR>
+          <TD><IMG height=23 src="images/login_1.jpg" 
+          width=468></TD></TR>
+        <TR>
+          <TD><IMG height=147 src="images/login_2.jpg" 
+            width=468></TD></TR></TABLE>
+      <TABLE cellSpacing=0 cellPadding=0 width=468 bgColor=#ffffff border=0>
+        <TR>
+          <TD width=16><IMG height=200 src="images/login_3.jpg" 
+            width=16></TD>
+          <TD align="middle">
+            <TABLE cellSpacing="0" cellPadding="0" width="230" border="0">
+              <FORM name=form1 method="post">
+              <TR height="5">
+                <TD width=5></TD>
+                <TD width=56></TD>
+                <TD></TD></TR>
+              <TR height="30">
+                <TD></TD>
+                <TD width="200px" align="right">员工工号：</TD>
+                <TD><INPUT id="id" style="BORDER: #000000 1px solid" maxLength=20 size=22 name=userid></TD></TR>
+              <TR height="30">
+                <TD>&nbsp; </TD>
+                <TD width="200px" align="right">登录密码：</TD>
+                <TD><INPUT id="pwd" style="BORDER: #000000 1px solid" type=password maxLength=20 size=22 name=pwd></TD></TR>
+              <TR height="30">
+                <TD>&nbsp; </TD>
+                <TD width="200px" align="right">登陆类型：</TD>
+                <TD>
+                	<select name="role" id="role" style="border: #000000 1px solid">
+						<option value="收银员">---------收银员---------</option>    	
+						<option value="员工">---------员&nbsp;&nbsp;&nbsp;工---------</option> 
+						<option value="老板">---------老&nbsp;&nbsp;&nbsp;板---------</option>   	   	
+    				</select>
+                </TD></TR>
+              <TR height="30">
+                <TD>&nbsp; </TD>
+                <TD width="200px" align="right">验证码：</TD>
+                <TD><span style="float:left;"><INPUT id="yzm" style="BORDER: #000000 1px solid" type=text maxLength=4 size=10 name=yzm></span><span style="margin:0px 2px;float:left;"><img id="ckimg" src="/tangchao/servlet/CheckCode" title="验证码"></span></TD></TR>    
+              <TR height=5>
+                <TD colSpan=3></TD></TR>
+              <TR>
+                <TD>&nbsp;</TD>
+                <TD>&nbsp;</TD>
+                <TD><INPUT type="button" height="18" width="70" style="background-color:transparent;border:0; width:70px; height:18px; background-image:url(images/bt_login.gif)" onclick="checkAndSubmit()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../index.jsp">返回站点</a></TD></TR></FORM></TABLE></TD>
+          <TD width="16"><IMG height="200" src="images/login_4.jpg" width=16></TD></TR></TABLE>
+      
+      <TABLE cellSpacing=0 cellPadding=0 width=468 border=0>
+        <TR>
+          <TD><IMG height=16 src="images/login_5.jpg" width=468></TD></TR></TABLE>
+      
+      <TABLE cellSpacing=0 cellPadding=0 width=468 border=0>
+        <TR>
+          <TD align=right>
+          	<A href="http://www.siaakoh.tk" title="站点技术支持" target=_blank><IMG height=26 src="images/login_6.gif" width=165 border=0></A>
+          </TD>
+        </TR>
+      </TABLE></TD></TR></TABLE>
+      
+      <script type="text/javascript">
+
+      //验证用户输入的信息是否合法
+      function checkAndSubmit()
+	{
+		var userId=$("#id").val();
+		var userPwd=$("#pwd").val();
+		var userRole=$("#role").val();
+		var uerYzm=$("#yzm").val();
+		if(userId==""||userPwd==""||uerYzm=="")
+		{
+			alert("登录信息填写不完整！");
+			
+			$("#id").val(userId);
+			$("#pwd").val(userPwd);
+			$("#role").val(userRole);
+			$("#yzm").val(uerYzm);
+			return false;
+			
+		}
+
+		$.ajax({
+			 type: "POST",
+			 url: "/tangchao/servlet/Login",
+			 data: {id:userId,pwd:userPwd,role:userRole,yzm:uerYzm},
+			 success: function(msg){
+				if(msg=="0"){
+
+				window.location.reload();
+				alert("验证码输入不正确！");
+				    
+			}else if(msg=="1"){
+
+			    alert("登录信息不正确！");
+
+			}else if(msg=="error"){
+
+				alert("登录故障异常,请于系统维护人员取得联系！");
+
+			}else if(msg=="e"){
+
+				window.location.href="/tangchao/sys/employee/index.html";
+
+			}else if(msg=="b"){
+
+				window.location.href="/tangchao/sys/boss/index.html";
+
+			}else if(msg=="c"){
+
+				window.location.href="/tangchao/sys/cashier/index.html";
+
+			}
+			 }
+
+		})
+
+			
+	}
+      
+      </script>
+      
+      
+      
+      </BODY></HTML>

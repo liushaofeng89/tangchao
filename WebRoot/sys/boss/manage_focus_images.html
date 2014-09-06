@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../jquerysrc/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/icon.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/demo.css">
+	<script type="text/javascript" src="../jquerysrc/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../jquerysrc/jquery.easyui.min.js"></script>
+	<link rel="stylesheet" href="../kindeditor-4.1.6/themes/default/default.css" />
+	<script src="../kindeditor-4.1.6/kindeditor.js"></script>
+	<script src="../kindeditor-4.1.6/kindeditor-min.js"></script>
+	<script src="../kindeditor-4.1.6/lang/zh_CN.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	
+	
+	<SCRIPT LANGUAGE="JavaScript">
+	$(document).ready(function(){
+		//获取本地焦点图
+		$.ajax({
+			type: "GET",
+			url: "/tangchao/servlet/FocusImageManage?type=get_backgroud_focusimage",
+			success: function(msg){
+				$("#localfocusimage").html(msg);}
+		});
+
+		//添加上传
+		KindEditor.ready(function(K) {
+			var uploadbutton = K.uploadbutton({
+		        button : K('#uploadButton')[0],
+		        fieldName : 'imgFile',
+		        url : '/tangchao/servlet/FocusImageManage?type=uploadfile_focusimage',
+		        afterUpload : function(data) {
+		                if (data.error == 0) {
+		                        alert("图片上传成功！");
+		                        window.location.reload();
+		                }
+		        }
+			});
+			uploadbutton.fileBox.change(function(e) {
+			        uploadbutton.submit();
+			});
+					
+		});
+
+
+	});
+
+	</SCRIPT>
+</head>
+<body style="text-align: center;">
+	
+	<div id="tt" class="easyui-tabs" tools="#tab-tools" style="width:1100px;height:520px;">
+		
+		
+		<div title="已经存在的图片">
+			<div id="aa" class="easyui-accordion" style="margin-top:1px;width:1100px;height:450px;">
+				<div title="数据库中的图片" iconCls="icon-ok" style="overflow:auto;">
+					
+				</div>
+				<div title="服务器本地化的图片" id="localfocusimage" iconCls="icon-ok" selected="true">
+					
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div title="我要添加图片" style="padding:20px;" style="overflow:hidden">
+			<p style="text-align: left;color: #bbb;">注：
+				<ul style="text-align: left;color: #bbb;margin-top: 0;list-style: none;list-style-image: url('../../images/dot4.gif')">
+					<li>图片大小为<font color="abb">1036px*768px</font></li>
+					<li>每次只能选择<font color="abb">一张图片</font></li>
+					<li>图片格式必须为<font color="abb">JPEG</font>|<font color="abb">GIF</font>|<font color="abb">PNG</font></li>
+					<li>图片大小不能超过<font color="abb">3M</font>(1M=1024kb)</li>
+				</ul>
+			</p>
+			<fieldset style="text-align: center">
+    				<legend>上传图片</legend>
+				    	<p><input class="ke-input-text" type="text" id="url" value="" readonly="readonly" /> <input type="button" id="uploadButton" value="选择图片" /></p>
+			</fieldset>
+		</div>
+		
+	</div>
+	
+</body>
+</html>

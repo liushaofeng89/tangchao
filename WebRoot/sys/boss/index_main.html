@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<META http-equiv=Content-Type content="text/html; charset=utf-8">
+		<script type="text/javascript" src="../jquerysrc/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="./js/pcinfo.js"></script>
+		<script type="text/javascript" src="../js/utils.js"></script>
+		<LINK rel="stylesheet" type="text/css" href="./css/style.css">
+		<STYLE type="text/css">
+table {
+	border: solid 1px #D5D5D5;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table td {
+	border: 1px solid #D5D5D5;
+	font-size: 12px;
+	padding: 7px 5px;
+	text-align: center;
+}
+
+table th {
+	background-color: #EEE;
+	border-right: 1px solid #D5D5D5;
+	font-size: 13.5px;
+	line-height: 120%;
+	font-weight: bold;
+	padding: 8px 5px;
+	text-align: left;
+}
+
+.demo {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.mouseOver {
+	background: #eee;
+}
+
+.evenBg {
+	background: #f8f8f8;
+}
+</STYLE>
+
+		<script type="text/javascript">
+	// 隔行换色
+	$(function() {
+		$("#yourTableID tr:even").addClass("evenBg");
+		var hasClass;
+		$("#yourTableID tr").mouseover(function() {
+			if ($(this).hasClass("evenBg")) {
+				hasClass = true;
+				$(this).removeClass();
+			} else {
+				hasClass = false;
+			}
+			$(this).addClass("mouseOver");
+		}).mouseout(function() {
+			$(this).removeClass("mouseOver");
+			if (hasClass) {
+				$(this).addClass("evenBg");
+			}
+		});
+	});
+</script>
+	</HEAD>
+	<BODY>
+
+		<DIV class="demo">
+			<TABLE id="yourTableID" border="0" cellSpacing="0" cellPadding="0"
+				width="100%">
+				<THEAD>
+					<TR>
+						<TH colspan="6">
+							当前计算机的硬件信息
+						</TH>
+					</TR>
+				</THEAD>
+				<TBODY>
+					<TR>
+						<TD>
+							计算机名：
+						</TD>
+						<TD id="pcName">
+							null
+						</TD>
+						<TD>
+							计算机品牌：
+						</TD>
+						<TD>
+							null
+						</TD>
+						<TD>
+							操作系统：
+						</TD>
+						<TD id="os">
+							null
+						</TD>
+					</TR>
+					<TR>
+						<TD>
+							计算机字长：
+						</TD>
+						<TD id="wordSize">
+							null
+						</TD>
+						<TD>
+							CPU编号
+						</TD>
+						<TD id="CPUID">
+							null
+						</TD>
+						<TD>
+							CPU型号：
+						</TD>
+						<TD id="CPUType">
+							null
+						</TD>
+					</TR>
+					<TR>
+						<TD>
+							用户语言：
+						</TD>
+						<TD id="userLanguage">
+							null
+						</TD>
+						<TD>
+							系统语言：
+						</TD>
+						<TD id="systemLanguage">
+							null
+						</TD>
+						<TD>
+							MAC地址：
+						</TD>
+						<TD id="MAC">
+							null
+						</TD>
+					</TR>
+					<TR>
+						<TD>
+							IP地址：
+						</TD>
+						<TD id="IPAddress">
+							null
+						</TD>
+						<TD>
+							主板ID
+						</TD>
+						<TD id="mainBoardId">
+							null
+						</TD>
+						<TD>
+							主板制造商：
+						</TD>
+						<TD id="mainBoardMadeBy">
+							null
+						</TD>
+					</TR>
+					<TR>
+						<TD>
+							浏览器：
+						</TD>
+						<TD id="browserName">
+							null
+						</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+				</TBODY>
+			</TABLE>
+			<BR>
+			<p>
+				&nbsp;&nbsp;&nbsp;&nbsp;备注：如果以上信息显示为"null",请将该站点添加到可信站点方可显示相关信息……
+			</p>
+		</DIV>
+
+	</BODY>
+</HTML>

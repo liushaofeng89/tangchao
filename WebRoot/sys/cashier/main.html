@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv=Content-Type content="text/html; charset=utf-8">
+	<META http-equiv=Pragma content=no-cache>
+	<META http-equiv=Cache-Control content=no-cache> 
+	<meta http-equiv="expires" content="0"> 
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/icon.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/demo.css">
+	<script type="text/javascript" src="../jquerysrc/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../jquerysrc/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="./js/pcinfo.js"></script>
+</HEAD>
+<BODY>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
+  <TR height=28>
+    <TD background=../images/title_bg1.jpg>&nbsp;&nbsp;&nbsp;当前计算机的硬件信息: </TD></TR>
+  <TR height=20>
+    <TD background=images/shadow_bg.jpg></TD></TR></TABLE>
+    
+<table id="tt" class="easyui-datagrid" style="width:1100px;height:auto;">
+    <thead>
+        <tr>
+            <th field="name1" width="110" align="center">名称</th>
+            <th field="name2" width="200" align="center">值</th>
+            <th field="name3" width="110" align="center">名称</th>
+            <th field="name4" width="200" align="center">值</th>
+            <th field="name5" width="110" align="center">名称</th>
+            <th field="name6" width="200" align="center">值</th>
+        </tr>                          
+    </thead>                           
+    <tbody>                            
+        <tr>                           
+            <td>计算机名：</td>            
+            <td><span id="pcName">null</span></td>            
+            <td>操作系统:</td>            
+            <td><span id="os">null</span></td>            
+            <td>计算机字长:</td>            
+            <td><span id="wordSize">null</span></td>            
+        </tr>
+        <tr>                           
+            <td>CPU编号:</td>            
+            <td><span id="CPUID">null</span></td>            
+            <td>CPU型号：</td>            
+            <td><span id="CPUType">null</span></td>            
+            <td></td>            
+            <td><span id="">null</span></td>            
+        </tr>                          
+        <tr>                           
+            <td>用户语言：</td>            
+            <td><span id="userLanguage">null</span></td>            
+            <td>系统语言:</td>            
+            <td><span id="systemLanguage">null</span></td>            
+            <td>MAC地址：</td>            
+            <td><span id="MAC">null</span></td>            
+        </tr>                          
+        <tr>                           
+            <td>主板ID:</td>            
+            <td><span id="mainBoardId">null</span></td>            
+            <td>主板制造商：</td>            
+            <td><span id="mainBoardMadeBy">null</span></td>            
+            <td>IP地址:</td>            
+            <td><span id="IPAddress">null</span></td>            
+        </tr>                          
+        <tr>                           
+            <td>浏览器信息：</td>            
+            <td colspan="3"><span id="browserInfo">null</span></td>            
+        </tr>                          
+    </tbody>                           
+</table><p>备注：如果以上信息显示为"null",请将该站点添加到可信站点方可显示相关信息……</p>
+
+</BODY>
+</HTML>

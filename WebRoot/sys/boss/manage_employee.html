@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/icon.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/demo.css">
+	<script type="text/javascript" src="../jquerysrc/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../jquerysrc/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquerysrc/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<script>
+		$(function(){
+			$('#test').datagrid({
+				title:'唐潮员工信息管理页面',
+				width:1000,
+				height:500,
+				pagination : true,//显示分页工具栏：分页工具栏将向服务器发送二个参数page( 页号,从1计起)与rows( 每页记录大小)
+				nowrap: false,//禁止自动换行
+				striped: true,//隔行换色
+				loadMsg : '列表正在努力载入中...',
+				collapsible:true,//可折叠
+				url:'/tangchao/servlet/JsonGenerate?type=userinfo',
+				sortName: 'code',
+				sortOrder: 'desc',
+				remoteSort: false,
+				pageSize: 15,//每页显示的记录条数，默认为10  
+                pageList: [15,20,30,50],//可以设置每页记录条数的列表 
+                idField:'userId',
+				frozenColumns:[[
+	                {field:'ck',checkbox:true},
+	                {title:'员工工号',field:'userId',width:80,align:'center',sortable:true}
+				]],
+				columns:[[
+			        {title:'员工基本信息',colspan:7,width:310},
+					{field:'opt',title:'操作',width:90,align:'center', rowspan:2,
+						formatter:function(value,rec){
+							return '<a href="#" onclick="editpersoninfo()">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="delsingle()">删除</a></span>';
+						}
+					}
+				],[
+					{field:'userName',title:'姓名',width:70,align:'center'},
+					{field:'userSex',title:'性别 ',width:30,align:'center'},
+					{field:'userRole',title:'类别',width:100,align:'center',rowspan:2,
+						sorter:function(a,b){
+							return (a>b?1:-1);
+						}
+					},
+					{field:'userType',title:'类型 ',width:100,align:'center'},
+					{field:'userMail',title:'邮箱 ',width:180,align:'center'},
+					{field:'userJoinTime',title:'加入时间 ',width:140,align:'center',sortable:true},
+					{field:'userLastTime',title:'上次登录时间 ',width:140,align:'center',sortable:true}
+				]],
+				rownumbers:true,
+				toolbar:[{
+					id:'btnadd',
+					text:'添加员工',
+					iconCls:'icon-add',
+					handler:function(){
+						$('#btnsave').linkbutton('enable');
+						$('#dd').show();
+						$('#dd').dialog({modal:true});
+					}
+				},{
+					id:'btncut',
+					text:'删除员工',
+					iconCls:'icon-cancel',
+					handler:function(){
+					delmulti();
+					}
+				}]
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	
+	<div id="test" style="margin:0;padding:0;"></div>
+	
+	<div id="dd" title="添加员工" style="padding:0px;width:380px;height:350px;display:none;text-align: center">
+			
+			<form id="myform" method="post" action="/tangchao/servlet/UserManage">
+				<table align="center">
+					<tr width="250px"><td colspan="3">&nbsp;</td></tr>
+					<tr width="250px"><td align="right">员工编号:</td><td style="width:100px;text-align:left;"><input name="userid" type="text" size="19" class="easyui-validatebox"/></td><td style="width:80px;text-align:left;"><font color="red">*</font>至少4位字符</td></tr>
+					<tr width="250px"><td align="right">员工姓名:</td><td style="width:100px;text-align:left;"><input name="username" type="text" size="19" class="easyui-validatebox"/></td><td style="width:80px;text-align:left;color:red">*</td></tr>
+					<tr width="250px"><td align="right">登录密码:</td><td style="width:100px;text-align:left;"><input name="password" type="password" class="easyui-validatebox"/></td><td style="width:80px;text-align:left;"><font color="red">*</font>至少6个字符</td></tr>
+					<tr width="250px"><td align="right">性别:</td><td style="width:100px;text-align:left;"><input type="radio" name="usersex" value="male" checked="true"/>男<input type="radio" name="usersex" value="female"/>女</td><td></td></tr>
+					<tr width="250px"><td align="right">登录类别:</td><td style="width:100px;text-align:left;"><select name="role" class="easyui-combobox" url="/tangchao/servlet/JsonGenerate?type=employee_role" panelHeight="auto" valueField="role_id" textField="role_name"></select></td><td style="width:80px;text-align:left;color:red">*</td></tr>
+					<tr width="250px"><td align="right">员工类型:</td><td style="width:100px;text-align:left;"><select name="type" class="easyui-combobox" panelHeight="auto"><option value="美发师助理">美发师助理</option><option value="美发师">美发师</option></select></td><td style="width:80px;text-align:left;color:red">*</td></tr>
+					<tr width="250px"><td align="right">员工邮箱:</td><td style="width:100px;text-align:left;"><input name="usermail" type="text" size="19" class="easyui-validatebox"/></td><td width="70px"></td></tr>
+					<tr width="250px"><td colspan="3">&nbsp;</td></tr>
+					<tr width="250px"><td colspan="3" style="color: #aaa">注:"<font color="red">*</font>"为必填项,若数据格式错误会导致数据提交错误</td></tr>
+					<tr width="250px"><td colspan="3">&nbsp;</td></tr>
+					<tr width="250px"><td colspan="3" align="center"><a href="javascript:$('#myform').submit();" id="btnsave" class="easyui-linkbutton">添加员工</a></td></tr>
+			</table>
+		</form>
+	</div>
+	
+	
+	<div id="im" title="信息修改" style="padding:0px;width:400px;height:300px;display:none;text-align: center">
+		<table align="center">
+			<tr width="25px"><td colspan="3">&nbsp;</td></tr>
+			<tr width="25px"><td align="right">工号:</td><td align="left"> </td><td width="70px"></td></tr>
+			<tr width="25px"><td align="right">姓名:</td><td align="left"><input type="text" value=" " class="easyui-validatebox" required="true"/></td><td width="70px"></td></tr>
+			<tr width="25px"><td align="right">性别:</td><td align="left"><input type="text" value=" " class="easyui-validatebox" required="true"/></td><td width="70px"></td></tr>
+			<tr width="25px"><td align="right">角色:</td><td align="left"><input type="text" value=" " class="easyui-validatebox" required="true"/></td><td width="70px"></td></tr>
+			<tr width="25px"><td align="right">邮箱:</td><td align="left"><input type="text" value=" " class="easyui-validatebox" required="true"/></td><td width="70px"></td></tr>
+			<tr width="25px"><td align="right">加入时间:</td><td align="left"> </td><td width="70px"></td></tr>
+			<tr width="25px"><td align="right">上次登录:</td><td align="left"> </td><td width="70px"></td></tr>
+			<tr width="25px"><td colspan="3">&nbsp;</td></tr>
+			<tr width="25px"><td colspan="3" align="center"><a href="javascript:void(0);" class="easyui-linkbutton">确认修改</a></td></tr>
+		</table>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../jquerysrc/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/icon.css">
+	<link rel="stylesheet" type="text/css" href="../jquerysrc/demo.css">
+	<script type="text/javascript" src="../jquerysrc/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../jquerysrc/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquerysrc/easyui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" href="../kindeditor-4.1.6/themes/default/default.css" />
+	<script charset="utf-8" src="../kindeditor-4.1.6/kindeditor-min.js"></script>
+	<script charset="utf-8" src="../kindeditor-4.1.6/lang/zh_CN.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<STYLE type="text/css">
+		.title{width:100%;
+			margin:0;
+			font-size:13.5px;
+			line-height:120%;
+			font-weight:bold;
+		}
+		
+	    table{border:solid 1px #D5D5D5;	
+			border-collapse:collapse;
+			width:100%;}
+	
+		#edit td{border:1px solid #D5D5D5;
+				font-size:12px;
+				padding:7px 5px;
+				text-align:center;}
+	
+		#edit th{background-color:#EEE;
+				border-right:1px solid #D5D5D5;
+				font-size:13.5px;
+				line-height:120%;
+				font-weight:bold;
+				padding:8px 5px;
+				text-align:center;}
+	</STYLE>
+	
+	<script type="text/javascript">
+		var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('textarea[name="content"]', {
+				resizeType : 0,
+				allowPreviewEmoticons : false,
+				allowImageUpload : true,
+				afterChange : function() {
+					K('.word_count').html(this.count('text'));
+					K('.word_count_left').html(5000-this.count('text'));
+				},
+				items : ['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+				         'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+				         'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+				         'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+				         'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+				         'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|',
+				         'table', 'hr', 'pagebreak', 'anchor', 'link', 'unlink', '|', 'about']
+			});
+		})
+	
+	</script>
+  </head>
+  
+  <body>
+    <div id="tt" class="easyui-tabs" tools="#tab-tools" style="width:1100px;height:520px;">
+		
+		<div title="修改活动" style="padding:20px;">
+			<div>
+				<div class="title">当前展示活动：</div><hr/>
+				<p>目前暂无任何活动，如需了解详情，请到柜台了解详情，谢谢……</p>
+			</div>
+			
+			<div>
+				<div class="title">添加活动展示：</div><hr/><br />
+				<form>
+					<textarea id="content" name="content" style="width:100%;height:260px;visibility:hidden;float: left;" onfocus="clearvalue()">在这里输入新的活动信息……</textarea>
+					<div style="margin:0;padding:0;width:100%;height:20%;text-align: center"><input id="subdata" name="getHtml" type="button" value="点击提交" style="margin-top:10px;padding-left:12px;padding-top:2px;background-color:transparent;background-image:url('../jquerysrc/icons/filesave.png');background-repeat:no-repeat;width:80px; height:20px;border:1px solid #A4BED4"/></div>
+				</form>
+			</div>
+		</div>
+		
+		<div title="添加设计" style="padding:20px;text-align: center" style="overflow:hidden">
+			<div>
+				<fieldset style="text-align: center">
+    			<legend>添加设计展示</legend>
+				<form action="" id="ff" method="post">
+					<table style="border:none;width:250px;text-align: center">
+						<tr>
+							<td style="text-align: right;">设计师:</td><td><input class="easyui-validatebox" style="width: 200px" type="text" name="designer" validType="length[1,4]" required="true"></input></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">说明:</td><td><textarea name="message" style="width:200px;height:50px;"></textarea></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">图片:</td><td><input class="easyui-validatebox" type="file" name="image"></input></td>
+						</tr>
+						<tr>
+							<td colspan="2">&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align: center;"><a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-save" style="border:1px solid #A4BED4;">提交数据</a></td>
+						</tr>
+					</table>
+				</form>
+				</fieldset>
+			</div>
+			
+	        
+	    
+		</div>
+		
+		<div title="编辑设计" style="padding:1px;" style="overflow:hidden">
+			<table id="edit" style="width:100%;">
+				<tr><th>图片</th><th>设计师</th><th>说明</th><th>上传时间</th><th>上传人</th><th>操作</th></tr>
+				<tr><td><img src="../../pictures/portfolio/1-small.jpg" width="100px"/></td><td>张三</td><td>暂无说明。</td><td>2012-12-05 17:12:30</td><td>张三</td><td><a href="">编辑</a>&nbsp;&nbsp;<a href="">删除</a></td></tr>
+				<tr><td><img src="../../pictures/portfolio/2-small.jpg" width="100px"/></td><td>宋江</td><td>暂无说明。</td><td>2012-12-06 15:12:30</td><td>张三</td><td><a href="">编辑</a>&nbsp;&nbsp;<a href="">删除</a></td></tr>
+				<tr><td><img src="../../pictures/portfolio/3-small.jpg" width="100px"/></td><td>展昭</td><td>暂无说明。</td><td>2012-12-07 04:12:30</td><td>张三</td><td><a href="">编辑</a>&nbsp;&nbsp;<a href="">删除</a></td></tr>
+				<tr><td><img src="../../pictures/portfolio/4-small.jpg" width="100px"/></td><td>吴三桂</td><td>暂无说明。</td><td>2012-12-08 05:12:30</td><td>张三</td><td><a href="">编辑</a>&nbsp;&nbsp;<a href="">删除</a></td></tr>
+				<tr><td><img src="../../pictures/portfolio/5-small.jpg" width="100px"/></td><td>吴三</td><td>暂无说明。</td><td>2012-12-09 11:12:30</td><td>张三</td><td><a href="">编辑</a>&nbsp;&nbsp;<a href="">删除</a></td></tr>
+				<tr><td><img src="../../pictures/portfolio/6-small.jpg" width="100px"/></td><td>王五</td><td>暂无说明。</td><td>2012-12-10 13:12:30</td><td>张三</td><td><a href="">编辑</a>&nbsp;&nbsp;<a href="">删除</a></td></tr>
+			</table>
+		</div>
+	</div>
+
+  </body>
+</html>
