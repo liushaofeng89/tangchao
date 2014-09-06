@@ -1,4 +1,4 @@
-var url=encodeURI(document.location),title = encodeURI(document.title),language='zh_cn',pics='',site="http://www.siaakoh.tk";
+var url=encodeURI(document.location),title = encodeURI(document.title),language='zh_cn',pics='',site="http://www.tangchao.tk";
 var desc=encodeURI("成都唐潮美发沙龙因你而精彩！");/*默认分享理由(可选)*/
 var summary=encodeURI("地址：成都市一品天下大街牌匾正前方");/*摘要(可选)*/
 
