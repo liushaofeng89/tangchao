@@ -61,7 +61,7 @@
 								   <div class="form-group">
 								      <label for="firstname" class="col-sm-2 control-label">请输入卡号</label>
 								      <div class="col-sm-7">
-								         <input id="rechargeId" type="text" class="form-control" onfocus="getFocus(this)" onblur="lostFocus(this)" onchange="queryUser(this)" maxlength="10" title="请会员卡号" value="请会员卡号">
+								         <input id="rechargeId" type="text" class="form-control" onfocus="getFocus(this)" onblur="lostFocus(this)" onchange="queryUser(this)" maxlength="4" title="请会员卡号" value="请会员卡号">
 								      </div>
 								      <label for="lastname" id="userLabel" class="col-sm-3 control-label" style="text-align: left;font-weight:normal;"></label>
 								   </div>
@@ -99,13 +99,19 @@
 								      </div>
 								   </div>
 								   <div class="form-group">
-								      <label class="col-sm-2 control-label" for="inputSuccess">会员卡号：</label>
+								      <label class="col-sm-2 control-label" for="inputSuccess">电话号码：</label>
 								      <div class="col-sm-10">
-								         <input type="text" class="form-control" id="cardId" onfocus="getFocus(this)" onblur="lostFocus(this)" maxlength="10" title="会员卡号" value="会员卡号">
+								         <input type="text" class="form-control" id="cellPhoneNo" onfocus="getFocus(this)" onblur="lostFocus(this)" maxlength="11" title="电话号码" value="电话号码">
 								      </div>
 								   </div>
 								   <div class="form-group">
-								      <label class="col-sm-2 control-label" for="inputWarning">会员类型：</label>
+								      <label class="col-sm-2 control-label" for="inputSuccess">会员卡号：</label>
+								      <div class="col-sm-10">
+								         <input type="text" class="form-control" id="cardId" onfocus="getFocus(this)" onblur="lostFocus(this)" maxlength="4" title="会员卡号" value="会员卡号">
+								      </div>
+								   </div>
+								   <div class="form-group">
+								      <label class="col-sm-2 control-label" for="inputWarning">折扣选择：</label>
 								      <div class="col-sm-10">
 								         <select id="discounts" class="form-control">
 								               <option value="1.0">原价</option>
@@ -149,8 +155,10 @@
 			var userName = $("#userName").val();
 			var cardId = $("#cardId").val();
 			var remain = $("#remain").val();
-			if (userName == "" || cardId == "" || remain == "") {
-				alert("用户名、卡号和出事金额为必填项!");
+			var cellPhoneNo = $("#cellPhoneNo").val();
+			if (userName == "用户姓名" || cardId == "会员卡号" || remain == "初始金额"|| cellPhoneNo == "电话号码") {
+				alert("用户名、卡号、电话号码和初始金额均为必填项!");
+				return;
 			}
 	
 			//register vip user
@@ -160,7 +168,7 @@
 				data : "userName=" + userName + "&sex="
 						+ $("#sexFemale").attr("checked") + "&cardId=" + cardId
 						+ "&discounts=" + $("#discounts").val() + "&remain="
-						+ remain,
+						+ remain+"&cellPhoneNo="+cellPhoneNo,
 				success : function(msg) {
 					if (msg == "REGISTER_SUCCESS") {
 						alert("用户注册成功！");
@@ -174,7 +182,7 @@
 
 		function queryUser(obj)
 		{
-			if($(obj).val().length==10)
+			if($(obj).val().length==4)
 			{
 				$.ajax( {
 					type : "POST",

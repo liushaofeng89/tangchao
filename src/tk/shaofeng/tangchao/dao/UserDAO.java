@@ -1,5 +1,6 @@
 package tk.shaofeng.tangchao.dao;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -34,6 +35,7 @@ public class UserDAO extends AbstractTCDAO
 		}
 		catch (Exception e)
 		{
+			Logger.getLogger(this.getClass()).error(e.getMessage(), e);
 			tx.rollback();
 			return false;
 		}

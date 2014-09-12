@@ -5,10 +5,11 @@
         <id name="userId" column="UserID" type="java.lang.Integer">
         	<generator class="increment"></generator>
         </id>
-        <property name="cardId" column="CardID" type="java.lang.Long"></property>
+        <property name="cardId" column="CardID" type="java.lang.Integer"></property>
         <property name="userName" column="UserName" type="java.lang.String"></property>
         <property name="isMale" column="Sex" type="java.lang.Boolean"></property>
         <property name="createDate" column="CreateTime" type="java.util.Date"></property>
         <property name="discount" column="Discounts" type="java.lang.Float"></property>
+        <property name="cellPhoneNo" column="CellPhoneNo" type="java.lang.String"></property>
     </class>
 </hibernate-mapping>

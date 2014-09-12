@@ -47,11 +47,10 @@ public class RechargeByCardIdService extends HttpServlet
 
 		RechargeDAO rechargeDAO = new RechargeDAO();
 		double remain = getRemain(rechargeDAO, cardId, rechargeVal);
-		RechargeModel model = new RechargeModel(cardId, rechargeVal, remain,
-				new Date());
+		RechargeModel model = new RechargeModel(cardId, rechargeVal, remain, new Date());
 		rechargeDAO.save(model);
 
-		writer.write("卡号:"+cardId+"          \r充值金额："+rechargeVal+",          \r账户余额为："+remain);
+		writer.write("卡号:" + cardId + "          \r充值金额：" + rechargeVal + ",          \r账户余额为：" + remain);
 	}
 
 	/**
@@ -65,7 +64,14 @@ public class RechargeByCardIdService extends HttpServlet
 	private double getRemain(RechargeDAO rechargeDAO, long cardId, int rechargeVal)
 	{
 		List<RechargeModel> recordList = rechargeDAO.findByCardIdDesc(cardId);
-		RechargeModel rechargeModel = recordList.get(0);
-		return rechargeVal + rechargeModel.getRemain();
+		if (!recordList.isEmpty())
+		{
+			RechargeModel rechargeModel = recordList.get(0);
+			return rechargeVal + rechargeModel.getRemain();
+		}
+		else
+		{
+			return 0.0;
+		}
 	}
 }

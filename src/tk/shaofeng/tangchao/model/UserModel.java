@@ -11,23 +11,26 @@ import java.util.Date;
 public class UserModel
 {
 	private int userId;
-	private long cardId;
+	private int cardId;
 	private String userName;
 	private boolean isMale;
 	private Date createDate;
 	private float discount;
+	private String cellPhoneNo;
+	private double remain;
 
 	public UserModel()
 	{
 	}
 
-	public UserModel(String userName, boolean isMale, Date createDate, long cardId, float discounts)
+	public UserModel(String userName, boolean isMale, Date createDate, int cardId, float discounts, String cellPhoneNo)
 	{
 		this.userName = userName;
 		this.isMale = isMale;
 		this.createDate = createDate;
 		this.cardId = cardId;
 		this.discount = discounts;
+		this.cellPhoneNo = cellPhoneNo;
 	}
 
 	public int getUserId()
@@ -40,12 +43,12 @@ public class UserModel
 		this.userId = userId;
 	}
 
-	public long getCardId()
+	public int getCardId()
 	{
 		return cardId;
 	}
 
-	public void setCardId(long cardId)
+	public void setCardId(int cardId)
 	{
 		this.cardId = cardId;
 	}
@@ -88,5 +91,25 @@ public class UserModel
 	public void setDiscount(float discount)
 	{
 		this.discount = discount;
+	}
+
+	public String getCellPhoneNo()
+	{
+		return cellPhoneNo;
+	}
+
+	public void setCellPhoneNo(String cellPhoneNo)
+	{
+		this.cellPhoneNo = cellPhoneNo;
+	}
+
+	public double getRemain()
+	{
+		return remain;
+	}
+
+	public void setRemain(double remain)
+	{
+		this.remain = remain;
 	}
 }

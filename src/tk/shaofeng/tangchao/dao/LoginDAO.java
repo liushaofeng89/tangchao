@@ -17,7 +17,7 @@ public class LoginDAO
 	 */
 	public boolean verify(String name, String pwd)
 	{
-		if ("Tangchao".equals(name) && "Tangchao".equals(pwd))
+		if ("admin".equals(name) && "tangchao888".equals(pwd))
 		{
 			return true;
 		}

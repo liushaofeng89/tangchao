@@ -40,17 +40,18 @@ public class RegisterService extends HttpServlet
 		String cardId = req.getParameter("cardId").trim();
 		String discounts = req.getParameter("discounts");
 		String remain = req.getParameter("remain").trim();
+		String cellPhoneNo = req.getParameter("cellPhoneNo");
 
 		PrintWriter writer = resp.getWriter();
-		if (!checkCardId(cardId) || !checkDiscounts(discounts) || !checkRemain(remain))
+		if (!checkCardId(cardId) || !checkDiscounts(discounts) || !checkRemain(remain) || !chePhoneNo(cellPhoneNo))
 		{
 			writer.write(REGISTER_FAIL);
 		}
 		else
 		{
-			long carId = Long.parseLong(cardId);
+			int carId = Integer.parseInt(cardId);
 			UserModel user = new UserModel(userName, Boolean.parseBoolean(sex), new Date(), carId, Float
-					.parseFloat(discounts));
+					.parseFloat(discounts), cellPhoneNo);
 
 			// 注册用户
 			UserDAO userDAO = new UserDAO();
@@ -62,6 +63,23 @@ public class RegisterService extends HttpServlet
 			rechargeDAO.save(model);
 
 			writer.write(REGISTER_SUCCESS);
+		}
+	}
+
+	private boolean chePhoneNo(String cellPhoneNo)
+	{
+		try
+		{
+			Long.parseLong(cellPhoneNo);
+			if (cellPhoneNo.length() == 11)
+			{
+				return true;
+			}
+			return false;
+		}
+		catch (NumberFormatException e)
+		{
+			return false;
 		}
 	}
 
@@ -94,7 +112,7 @@ public class RegisterService extends HttpServlet
 		{
 			return false;
 		}
-		if (cardId.length() != MagicNum.INT10)
+		if (cardId.length() != MagicNum.INT4)
 		{
 			return false;
 		}

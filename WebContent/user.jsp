@@ -53,6 +53,7 @@
 						      <tr>
 						         <th>姓名</th>
 						         <th>性别</th>
+						         <th>电话号码</th>
 						         <th>卡号</th>
 						         <th>折扣</th>
 						         <th>账户余额(元)</th>
@@ -86,7 +87,7 @@
 				var userList=eval(msg);
 				for(var i in userList)
 				{
-					$("#userListTable").append("<tr><td>"+userList[i].userName+"</td><td>"+showSex(userList[i].isMale)+"</td><td>"+userList[i].cardId+"</td><td>"+showDiscounts(userList[i].discount)+"</td><td>"+userList[i].remain+"</td><td>"+formatTime(userList[i].createDate)+"</td></tr>");
+					$("#userListTable").append("<tr><td>"+userList[i].userName+"</td><td>"+showSex(userList[i].isMale)+"</td><td>"+userList[i].cellPhoneNo+"</td><td>"+userList[i].cardId+"</td><td>"+showDiscounts(userList[i].discount)+"</td><td>"+userList[i].remain+"</td><td>"+formatTime(userList[i].createDate)+"</td></tr>");
 				}
 			}
 		});

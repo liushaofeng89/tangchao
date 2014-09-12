@@ -6,11 +6,11 @@
     <session-factory>
     	<!--指定连接数据库用的驱动-->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <!--指定连接数据库的路径-->
+        <!--指定连接数据库的路径jdbc:mysql://localhost:3307/tangchao_sys-->
         <property name="connection.url">jdbc:mysql://localhost:3306/tangchao_sys</property>
         <!--指定连接数据库的用户名-->
         <property name="connection.username">root</property>
-        <!--指定连接数据库的密码-->
+        <!--指定连接数据库的密码tangchao888-->
         <property name="connection.password">Huawei@345</property>
         <!--指定数据库使用的SQL方言-->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
