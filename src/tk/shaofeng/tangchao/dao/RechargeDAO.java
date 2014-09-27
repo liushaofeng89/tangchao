@@ -38,10 +38,10 @@ public class RechargeDAO extends AbstractTCDAO
 	 */
 	public boolean save(RechargeModel model)
 	{
+		Session session = getSession();
 		Transaction tx = null;
 		try
 		{
-			Session session = getSession();
 			tx = session.beginTransaction();
 			session.save(model);
 			tx.commit();
@@ -52,6 +52,7 @@ public class RechargeDAO extends AbstractTCDAO
 		{
 			Logger.getLogger(this.getClass()).error(e.getMessage(), e);
 			tx.rollback();
+			session.close();
 			return false;
 		}
 	}
@@ -66,8 +67,11 @@ public class RechargeDAO extends AbstractTCDAO
 	public List<RechargeModel> findByCardIdDesc(long cardId)
 	{
 		String hql = "from RechargeModel model where model.cardId = ? order by model.rechageDate desc";
-		Query createQuery = getSession().createQuery(hql);
+		Session session = getSession();
+		Query createQuery = session.createQuery(hql);
 		createQuery.setParameter(0, cardId);
-		return createQuery.list();
+		List list = createQuery.list();
+		session.close();
+		return list;
 	}
 }

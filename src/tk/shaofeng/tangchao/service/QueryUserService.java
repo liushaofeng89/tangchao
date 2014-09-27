@@ -44,7 +44,8 @@ public class QueryUserService extends HttpServlet
 
 		if (Boolean.parseBoolean(queryType))
 		{
-			userList = dao.findUserByCardId(req.getParameter("cardId"));
+			String cardIdStr = req.getParameter("cardId");
+			userList = dao.findUserByCardId(Integer.parseInt(cardIdStr));
 		}
 		else
 		{

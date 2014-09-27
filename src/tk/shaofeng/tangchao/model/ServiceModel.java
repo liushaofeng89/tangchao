@@ -1,5 +1,8 @@
 package tk.shaofeng.tangchao.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 服务业务模型
  * 
@@ -10,7 +13,19 @@ public class ServiceModel
 {
 	private int id;
 	private String name;
-	private float price;
+	private boolean enabled;
+	private List<ServiceChangeHistoryModel> priceList = new ArrayList<ServiceChangeHistoryModel>();
+
+	public ServiceModel()
+	{
+
+	}
+
+	public ServiceModel(String name)
+	{
+		this.name = name;
+		this.enabled = true;
+	}
 
 	public int getId()
 	{
@@ -32,13 +47,24 @@ public class ServiceModel
 		this.name = name;
 	}
 
-	public float getPrice()
+	public boolean isEnabled()
 	{
-		return price;
+		return enabled;
 	}
 
-	public void setPrice(float price)
+	public void setEnabled(boolean enabled)
 	{
-		this.price = price;
+		this.enabled = enabled;
 	}
+
+	public List<ServiceChangeHistoryModel> getPriceList()
+	{
+		return priceList;
+	}
+
+	public void setPriceList(List<ServiceChangeHistoryModel> priceList)
+	{
+		this.priceList = priceList;
+	}
+
 }

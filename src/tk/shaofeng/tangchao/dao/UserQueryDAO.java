@@ -3,6 +3,7 @@ package tk.shaofeng.tangchao.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 
 import tk.shaofeng.tangchao.hbn.AbstractTCDAO;
 import tk.shaofeng.tangchao.model.UserModel;
@@ -24,10 +25,13 @@ public class UserQueryDAO extends AbstractTCDAO
 	@SuppressWarnings("unchecked")
 	public List<UserModel> findAllUserByTimeSort(String sortType)
 	{
+		Session session = getSession();
 		String hql = "from UserModel as user order by user.createDate desc";
-		Query createQuery = getSession().createQuery(hql);
-		// createQuery.setString(0, sortType);
-		return (List<UserModel>) createQuery.list();
+		Query createQuery = session.createQuery(hql);
+//		createQuery.setParameter(0, sortType);
+		List<UserModel> list = (List<UserModel>) createQuery.list();
+		session.close();
+		return list;
 	}
 
 	/**
@@ -37,11 +41,14 @@ public class UserQueryDAO extends AbstractTCDAO
 	 * @return the user information with the input card id
 	 */
 	@SuppressWarnings("unchecked")
-	public List<UserModel> findUserByCardId(String cardId)
+	public List<UserModel> findUserByCardId(int cardId)
 	{
 		String hql = "from UserModel as user where user.cardId = ?";
-		Query createQuery = getSession().createQuery(hql);
-		createQuery.setString(0, cardId);
-		return (List<UserModel>) createQuery.list();
+		Session session = getSession();
+		Query createQuery = session.createQuery(hql);
+		createQuery.setParameter(0, cardId);
+		List<UserModel> list = (List<UserModel>) createQuery.list();
+		session.close();
+		return list;
 	}
 }

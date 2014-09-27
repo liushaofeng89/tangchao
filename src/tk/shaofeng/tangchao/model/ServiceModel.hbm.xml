@@ -6,6 +6,6 @@
         	<generator class="increment"></generator>
         </id>
         <property name="name" column="Name" type="java.lang.String"></property>
-        <property name="price" column="Price" type="java.lang.Float"></property>
+        <property name="enabled" column="Enabled" type="java.lang.Boolean"></property>
     </class>
 </hibernate-mapping>

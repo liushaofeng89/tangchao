@@ -58,12 +58,24 @@
 					    </ul>
 					    <div class="tab-content" style="padding-top: 20px;padding-left:5px;border: solid 1px #ddd;border-top: none;border-bottom-left-radius:4px;border-bottom-right-radius：4px;">
 							<div class="tab-pane active" id="tab1" style="padding: 150px;">
-								<form class="form-inline" role="form" style="clear:both;text-align: center;">
+								<!--  <form class="form-inline" role="form" style="clear:both;text-align: center;">
 								   <div class="form-group">
 								      <input type="text" class="form-control" id="cardIdInput" placeholder="请输入卡号" style="width: 400px;">
 								   </div>
 								   <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>&nbsp;&nbsp;查询</button>
-								</form>
+								</form>-->
+								<div class="input-group">
+				               		<input type="text" class="form-control" id="input">
+				               		<div class="input-group-btn">
+					                  	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i>&nbsp;&nbsp;会员卡号&nbsp;&nbsp;<span class="caret"></span></button>
+					                  	<ul class="dropdown-menu">
+					                     	<li><a href="#">手机号码</a></li>
+					                     	<li class="divider"></li>
+					                     	<li><a href="#">会员姓名</a></li>
+					                  	</ul>
+					               	</div><!-- /btn-group -->
+				            </div><!-- /input-group -->
+								
 							</div>
 							<div class="tab-pane" id="tab2">
 						     		<h3 class="page-header">会员信息</h3>

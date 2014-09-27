@@ -24,9 +24,9 @@ public class UserDAO extends AbstractTCDAO
 	public boolean save(UserModel user)
 	{
 		Transaction tx = null;
+		Session session = getSession();
 		try
 		{
-			Session session = getSession();
 			tx = session.beginTransaction();
 			session.save(user);
 			tx.commit();
@@ -37,6 +37,7 @@ public class UserDAO extends AbstractTCDAO
 		{
 			Logger.getLogger(this.getClass()).error(e.getMessage(), e);
 			tx.rollback();
+			session.close();
 			return false;
 		}
 	}

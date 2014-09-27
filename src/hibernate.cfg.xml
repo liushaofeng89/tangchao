@@ -33,6 +33,7 @@
         <mapping resource="tk/shaofeng/tangchao/model/UserModel.hbm.xml" />
         <mapping resource="tk/shaofeng/tangchao/model/RechargeModel.hbm.xml" />
         <mapping resource="tk/shaofeng/tangchao/model/ServiceModel.hbm.xml" />
+        <mapping resource="tk/shaofeng/tangchao/model/ServiceChangeHistoryModel.hbm.xml" />
           
     </session-factory>
 </hibernate-configuration>
