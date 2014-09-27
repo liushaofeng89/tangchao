@@ -67,8 +67,9 @@
 								<div class="input-group">
 				               		<input type="text" class="form-control" id="input">
 				               		<div class="input-group-btn">
-					                  	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i>&nbsp;&nbsp;会员卡号&nbsp;&nbsp;<span class="caret"></span></button>
+					                  	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i>&nbsp;&nbsp;点击查询&nbsp;&nbsp;<span class="caret"></span></button>
 					                  	<ul class="dropdown-menu">
+					                     	<li><a href="#">会员卡号</a></li>
 					                     	<li><a href="#">手机号码</a></li>
 					                     	<li class="divider"></li>
 					                     	<li><a href="#">会员姓名</a></li>

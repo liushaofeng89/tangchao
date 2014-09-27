@@ -21,11 +21,16 @@ public class ServiceChangeHistoryModel implements Comparable<ServiceChangeHistor
 
 	}
 
-	public ServiceChangeHistoryModel(int serviceId, int price)
+	public ServiceChangeHistoryModel(int serviceId, float price)
 	{
 		this.serviceId = serviceId;
 		this.price = price;
 		this.lastModifyTime = Calendar.getInstance().getTime();
+	}
+
+	public ServiceChangeHistoryModel(String priceStr)
+	{
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId()

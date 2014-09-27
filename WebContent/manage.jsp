@@ -63,6 +63,39 @@
 			    </div><!-- /.modal-content -->
 			  </div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
+			
+			<div class="modal fade" id="addDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">添加服务项目</h4>
+			      </div>
+			      <div class="modal-body">
+				      <form class="form-horizontal" role="form">
+					   <div class="form-group">
+					      <label class="col-sm-3 control-label">服务名称：</label>
+					      <div class="col-sm-8">
+					         <input class="form-control" id="addName" type="text">
+					      </div>
+					   </div>
+					    <div class="form-group">
+					      <label class="col-sm-3 control-label">单价：</label>
+					      <div class="col-sm-8">
+					         <input class="form-control" id="addPrice" type="text">
+					      </div>
+					      <label for="text" id="addMsgLabel" class="col-sm-6 control-label"></label>
+					   </div>
+					</form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" onclick="" data-dismiss="modal">关闭</button>
+			        <button type="button" class="btn btn-primary" id="commit" onclick="addService()">保存</button>
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			
 		
 			<jsp:include page="header.jsp"/>
 
@@ -86,7 +119,7 @@
 						      <tr>
 						         <th>编号</th>
 						         <th>服务名称</th>
-						         <th>服务单价(元)</th>
+						         <th>服务单价</th>
 						         <th>操作</th>
 						      </tr>
 						   </thead>
@@ -115,13 +148,13 @@
 	 				if(data.lenght!=0)
 	 				{
 		 				for (var i in data) {
-		 					$("#serviceListTable").append("<tr><td>"+(parseInt(i)+1)+"</td><td>"+data[i].name+"</td><td><i class='fa fa-cny'></i>&nbsp;"+data[i].priceList[0].price+".00</td><td><a href='javascript:modify(\""+data[i].name+"\","+data[i].id+");'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:del("+data[i].id+");'><i class='fa fa-times'></i></a></td></tr>");
+		 					$("#serviceListTable").append("<tr><td>"+(parseInt(i)+1)+"</td><td>"+data[i].name+"</td><td><i class='fa fa-cny'></i>&nbsp;"+data[i].priceList[0].price.toFixed(2)+"元</td><td><a href='javascript:modify(\""+data[i].name+"\","+data[i].id+");'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:del("+data[i].id+");'><i class='fa fa-times'></i></a></td></tr>");
 		 				}
 			 		}else
 			 		{
 			 			$("#serviceListTable").append("<tr><td colspan='4'>没有查询到服务项目数据！</td></tr>");
 				 	}
-	 				$("#serviceListTable").append("<tr><td colspan='4' style='text-align:center;'><button type='button' class='btn btn-primary'><i class='fa fa-plus'></i>&nbsp;添加一项服务</button></td></tr>");
+	 				$("#serviceListTable").append("<tr><td colspan='4' style='text-align:center;'><button type='button' class='btn btn-primary' onclick='add()'><i class='fa fa-plus'></i>&nbsp;添加一项服务</button></td></tr>");
 	 			}
 	 		});
     	});
@@ -133,9 +166,58 @@
     		$('#modifyDialog').modal('show');
         }
 
+    	function addService()
+    	{
+    		$.ajax({
+				type : "POST",
+				url : "/tangchao/QueryServiceInfo",
+				data:"opType=ADD&name="+$("#addName").val()+"&price="+$("#addPrice").val(),
+				cache:false,
+				success : function(msg) {
+					if("SUCCESS"==msg)
+					{
+						$("#addMsgLabel").html("");
+						$('#addDialog').modal('hide');
+						location.reload();
+					}else
+					{
+						$("#addMsgLabel").html("<code>"+msg+"</code>");
+					}
+				}
+			});
+        }
+        
 		function clearMsgLabel()
 		{
 			$("#msgLable").html("");
+		}
+
+		function add()
+		{
+			$('#addDialog').modal('show');
+		}
+		
+		function del(id)
+		{
+			if(confirm('确实要删除该内容吗?'))
+			{
+				$.ajax({
+					type : "POST",
+					url : "/tangchao/QueryServiceInfo",
+					data:"opType=DELETE&id="+id,
+					cache:false,
+					success : function(msg) {
+						if("SUCCESS"==msg)
+						{
+							alert("删除成功！");
+							location.reload();
+						}else
+						{
+							alert(msg);
+						}
+					}
+				});
+			}
 		}
     	
         function commitPrice(obj)
@@ -147,26 +229,26 @@
 				return;
             }
             else{
-			$.ajax({
-					type : "POST",
-					url : "/tangchao/QueryServiceInfo",
-					data:"opType=MODIFY&id="+$(obj).val()+"&newPrice="+newPrice,
-					cache:false,
-					success : function(msg) {
-						if("SUCCESS"==msg)
-						{
-							$("#msgLable").html("");
-							$('#modifyDialog').modal('hide');
-							location.reload();
-						}else
-						{
-							$("#msgLable").html("<code>"+msg+"</code>");
+				$.ajax({
+						type : "POST",
+						url : "/tangchao/QueryServiceInfo",
+						data:"opType=MODIFY&id="+$(obj).val()+"&newPrice="+newPrice,
+						cache:false,
+						success : function(msg) {
+							if("SUCCESS"==msg)
+							{
+								$("#msgLable").html("");
+								$('#modifyDialog').modal('hide');
+								location.reload();
+							}else
+							{
+								$("#msgLable").html("<code>"+msg+"</code>");
+							}
+						},
+						error:function(msg){
+							$("#msgLable").html("<code>服务器处理错误！</code>");
 						}
-					},
-					error:function(msg){
-						$("#msgLable").html("<code>服务器处理错误！</code>");
-					}
-				});
+					});
 	        }
         }
     </script>

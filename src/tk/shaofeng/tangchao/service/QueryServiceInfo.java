@@ -64,16 +64,26 @@ public class QueryServiceInfo extends HttpServlet
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		PrintWriter writer = resp.getWriter();
-		String opTypeStr = req.getParameter("opType");
+		String opTypeStr = req.getParameter("opType").trim();
 		boolean result = false;
 
 		if ("ADD".equals(opTypeStr))
 		{
-
+			String nameStr = req.getParameter("name").trim();
+			String priceStr = req.getParameter("price").trim();
+			// 更新服务项目
+			ServiceInfoDAO serviceInfoDAO = new ServiceInfoDAO();
+			boolean saveService = serviceInfoDAO.save(new ServiceModel(nameStr));
+			ServiceModel model = serviceInfoDAO.findByName(nameStr);
+			// 更新初始化单价
+			boolean savePrice = new ServiceChangeHistoryDAO().save(new ServiceChangeHistoryModel(model.getId(), Float
+					.parseFloat(priceStr)));
+			result = saveService && savePrice;
 		}
 		else if ("DELETE".equals(opTypeStr))
 		{
-
+			String idStr = req.getParameter("id");
+			result = new ServiceInfoDAO().delete(Integer.parseInt(idStr));
 		}
 		else if ("MODIFY".equals(opTypeStr))
 		{
@@ -82,7 +92,7 @@ public class QueryServiceInfo extends HttpServlet
 			ServiceChangeHistoryModel model = null;
 			try
 			{
-				model = new ServiceChangeHistoryModel(Integer.parseInt(idStr), Integer.parseInt(newPriceStr));
+				model = new ServiceChangeHistoryModel(Integer.parseInt(idStr), Float.parseFloat(newPriceStr));
 			}
 			catch (NumberFormatException e)
 			{
@@ -94,7 +104,7 @@ public class QueryServiceInfo extends HttpServlet
 		}
 		else
 		{
-
+			//do nothing
 		}
 		if (result)
 		{
@@ -106,9 +116,4 @@ public class QueryServiceInfo extends HttpServlet
 		}
 	}
 
-	private boolean modify(String id, String newPrice)
-	{
-
-		return false;
-	}
 }
