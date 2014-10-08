@@ -172,7 +172,7 @@
 				success : function(msg) {
 					if (msg == "REGISTER_SUCCESS") {
 						alert("用户注册成功！");
-						window.location.href = "user.jsp";
+						window.location.href = "index.jsp#"+new Date().getTime();
 					} else {
 						alert("用户注册失败！");
 					}
@@ -217,7 +217,7 @@
 				data : "cardId="+ $("#rechargeId").val()+"&rechargeVal=" + $("#rechargeVal").val(),
 				success : function(msg) {
 					alert(msg);
-					window.location.href="register.jsp";
+					window.location.href = "index.jsp#"+new Date().getTime();
 				}
 			});
 		}

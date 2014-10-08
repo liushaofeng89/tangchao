@@ -3,6 +3,7 @@ package tk.shaofeng.tangchao.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +63,25 @@ public class RegisterService extends HttpServlet
 			RechargeDAO rechargeDAO = new RechargeDAO();
 			rechargeDAO.save(model);
 
+			// 更新当前用户信息
+			user.setRemain(getRemain(carId));
+			req.getSession().setAttribute("TANGCHAO_CURRENT_USER", user);
+
 			writer.write(REGISTER_SUCCESS);
+		}
+	}
+
+	private double getRemain(int carId)
+	{
+		List<RechargeModel> recordList = new RechargeDAO().findByCardIdDesc(carId);
+		if (!recordList.isEmpty())
+		{
+			RechargeModel rechargeModel = recordList.get(0);
+			return rechargeModel.getRemain();
+		}
+		else
+		{
+			return 0.0;
 		}
 	}
 

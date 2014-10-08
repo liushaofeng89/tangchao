@@ -35,6 +35,7 @@ public class LoginService extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		request.setAttribute(USER_NAME, null);
+		request.setAttribute("TANGCHAO_CURRENT_USER", null);
 		response.sendRedirect("login.html");
 	}
 

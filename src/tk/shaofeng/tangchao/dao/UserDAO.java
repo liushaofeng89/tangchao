@@ -1,6 +1,9 @@
 package tk.shaofeng.tangchao.dao;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -39,6 +42,30 @@ public class UserDAO extends AbstractTCDAO
 			tx.rollback();
 			session.close();
 			return false;
+		}
+	}
+
+	/**
+	 * find user info by card ID
+	 * 
+	 * @param cardId card ID
+	 * @return user model
+	 */
+	@SuppressWarnings("unchecked")
+	public UserModel findByCardId(int cardId)
+	{
+		Session session = getSession();
+		Query createQuery = session.createQuery("from UserModel model where model.cardId = ?");
+		createQuery.setParameter(0, cardId);
+		List list = createQuery.list();
+		session.close();
+		if (list.isEmpty())
+		{
+			return null;
+		}
+		else
+		{
+			return (UserModel) list.get(0);
 		}
 	}
 }

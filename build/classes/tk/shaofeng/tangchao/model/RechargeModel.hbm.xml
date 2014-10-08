@@ -5,7 +5,7 @@
         <id name="id" column="ID" type="java.lang.Integer">
         	<generator class="increment"></generator>
         </id>
-        <property name="cardId" column="CardID" type="java.lang.Long"></property>
+        <property name="cardId" column="CardID" type="java.lang.Integer"></property>
         <property name="rechargeAmount" column="RechargeAmount" type="java.lang.Double"></property>
         <property name="remain" column="Remain" type="java.lang.Double"></property>
         <property name="rechageDate" column="RechargeTime" type="java.util.Date"></property>

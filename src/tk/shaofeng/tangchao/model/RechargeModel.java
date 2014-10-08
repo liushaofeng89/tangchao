@@ -11,7 +11,7 @@ import java.util.Date;
 public class RechargeModel
 {
 	private int id;
-	private long cardId;
+	private int cardId;
 	private double rechargeAmount;
 	private double remain;
 	private Date rechageDate;
@@ -20,7 +20,7 @@ public class RechargeModel
 	{
 	}
 
-	public RechargeModel(long carId, int rechargeAmount, double remain, Date rechageDate)
+	public RechargeModel(int carId, int rechargeAmount, double remain, Date rechageDate)
 	{
 		this.cardId = carId;
 		this.rechargeAmount = rechargeAmount;
@@ -38,12 +38,12 @@ public class RechargeModel
 		this.id = id;
 	}
 
-	public long getCardId()
+	public int getCardId()
 	{
 		return cardId;
 	}
 
-	public void setCardId(long cardId)
+	public void setCardId(int cardId)
 	{
 		this.cardId = cardId;
 	}

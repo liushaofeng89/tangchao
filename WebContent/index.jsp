@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -51,7 +51,7 @@
 			          	</ul>
         			</div>
         			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          				<ul class="nav nav-tabs">
+          				<ul class="nav nav-tabs" id="myTab">
 					    	<li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-users"></i>&nbsp;&nbsp;用户查询</a></li>
 					    	<li><a href="#tab2" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;&nbsp;业务办理</a></li>
 					        <li><a href="#tab3" data-toggle="tab"><i class="fa fa-history"></i>&nbsp;&nbsp;消费历史</a></li>
@@ -82,20 +82,30 @@
 						     		<h3 class="page-header">会员信息</h3>
 	          						<div class="row placeholders">
 	            						<div class="col-xs-6 col-sm-3 placeholder">
-	              							<h4>姓名</h4>
-	              							<span class="text-muted">唐三藏</span>
+	              							<span class="text-muted">姓名</span>
+	              							<h3><code>${sessionScope.TANGCHAO_CURRENT_USER.userName}</code></h3>
 	            						</div>
 	            						<div class="col-xs-6 col-sm-3 placeholder">
-	              							<h4>卡号</h4>
-	              							<span class="text-muted">No.123456789</span>
+	              							<span class="text-muted">卡号</span>
+	              							<h3><code>
+	              							<c:if test="${sessionScope.TANGCHAO_CURRENT_USER.cardId!=null}">NO.</c:if>
+	              							${sessionScope.TANGCHAO_CURRENT_USER.cardId}</code></h3>
 	            						</div>
 			            				<div class="col-xs-6 col-sm-3 placeholder">
-			              					<h4>折扣</h4>
-			              					<span class="text-muted">八折</span>
+			              					<span class="text-muted">折扣</span>
+			              					<c:choose>
+			              						<c:when test="${sessionScope.TANGCHAO_CURRENT_USER.discount=='1.0'}"><h3><code>无折扣</code></h3></c:when>
+			              						<c:when test="${sessionScope.TANGCHAO_CURRENT_USER.discount=='0.9'}"><h3><code>九折卡</code></h3></c:when>
+			              						<c:when test="${sessionScope.TANGCHAO_CURRENT_USER.discount=='0.8'}"><h3><code>八折卡</code></h3></c:when>
+			              						<c:when test="${sessionScope.TANGCHAO_CURRENT_USER.discount=='0.7'}"><h3><code>七折卡</code></h3></c:when>
+			              						<c:when test="${sessionScope.TANGCHAO_CURRENT_USER.discount=='0.6'}"><h3><code>六折卡</code></h3></c:when>
+			              						<c:when test="${sessionScope.TANGCHAO_CURRENT_USER.discount=='0.5'}"><h3><code>五折卡</code></h3></c:when>
+			              						<c:otherwise><h3><code></code></h3></c:otherwise>
+			              					</c:choose>
 			            				</div>
 			            				<div class="col-xs-6 col-sm-3 placeholder">
-			              					<h4>余额（人民币）</h4>
-			              					<span class="text-muted"><i class="fa fa-jpy"></i>&nbsp;312.00</span>
+			              					<span class="text-muted"><i class="fa fa-jpy"></i>&nbsp;余额（人民币）</span>
+			              					<h3><code>${sessionScope.TANGCHAO_CURRENT_USER.remain}</code></h3>
 			            				</div>
 			          				</div>
 	
@@ -256,5 +266,14 @@
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
+    <script type="text/javascript">
+	    $(document).ready(function(){
+	    	var des=document.URL.split("#")[1];
+	    	if(des!=null)
+	    	{
+	    		$('#myTab a[href="#tab2"]').tab('show');
+			}
+	    });
+    </script>
   </body>
 </html>

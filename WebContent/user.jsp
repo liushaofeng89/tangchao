@@ -57,7 +57,7 @@
 						         <th>卡号</th>
 						         <th>折扣</th>
 						         <th>账户余额(元)</th>
-						         <th>办卡时间</th>
+						         <th>开卡时间</th>
 						      </tr>
 						   </thead>
 						   <tbody id="userListTable">
@@ -87,7 +87,7 @@
 				var userList=eval(msg);
 				for(var i in userList)
 				{
-					$("#userListTable").append("<tr><td>"+userList[i].userName+"</td><td>"+showSex(userList[i].isMale)+"</td><td>"+userList[i].cellPhoneNo+"</td><td>"+userList[i].cardId+"</td><td>"+showDiscounts(userList[i].discount)+"</td><td>"+userList[i].remain+"</td><td>"+formatTime(userList[i].createDate)+"</td></tr>");
+					$("#userListTable").append("<tr><td>"+userList[i].userName+"</td><td>"+showSex(userList[i].isMale)+"</td><td>"+userList[i].cellPhoneNo+"</td><td>"+userList[i].cardId+"</td><td>"+showDiscounts(userList[i].discount)+"</td><td style='width:150px;text-align:right'><i class='fa fa-jpy'></i>&nbsp;"+userList[i].remain.toFixed(2)+"</td><td>"+formatTime(userList[i].createDate)+"</td></tr>");
 				}
 			}
 		});

@@ -28,7 +28,7 @@ function showDiscounts(obj)
 {
 	if(obj=="1")
 	{
-		return "--";
+		return "无折扣";
 	}else if(obj=="0.9")
 	{
 		return "九折";

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tk.shaofeng.tangchao.dao.RechargeDAO;
+import tk.shaofeng.tangchao.dao.UserDAO;
 import tk.shaofeng.tangchao.model.RechargeModel;
+import tk.shaofeng.tangchao.model.UserModel;
 import tk.shaofeng.tangchao.util.TCConstant;
 
 /**
@@ -32,12 +34,12 @@ public class RechargeByCardIdService extends HttpServlet
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		resp.setCharacterEncoding(TCConstant.ENCODING);
-		long cardId = -1;
+		int cardId = -1;
 		int rechargeVal = -1;
 		PrintWriter writer = resp.getWriter();
 		try
 		{
-			cardId = Long.parseLong(req.getParameter("cardId"));
+			cardId = Integer.parseInt(req.getParameter("cardId"));
 			rechargeVal = Integer.parseInt(req.getParameter("rechargeVal"));
 		}
 		catch (NumberFormatException e)
@@ -50,6 +52,11 @@ public class RechargeByCardIdService extends HttpServlet
 		RechargeModel model = new RechargeModel(cardId, rechargeVal, remain, new Date());
 		rechargeDAO.save(model);
 
+		// 更新当前用户信息
+		UserModel currentUserModel = new UserDAO().findByCardId(cardId);
+		currentUserModel.setRemain(remain);
+		req.getSession().setAttribute("TANGCHAO_CURRENT_USER", currentUserModel);
+
 		writer.write("卡号:" + cardId + "          \r充值金额：" + rechargeVal + ",          \r账户余额为：" + remain);
 	}
 
@@ -61,7 +68,7 @@ public class RechargeByCardIdService extends HttpServlet
 	 * @param rechargeVal recharge amount
 	 * @return remain after rechaged
 	 */
-	private double getRemain(RechargeDAO rechargeDAO, long cardId, int rechargeVal)
+	private double getRemain(RechargeDAO rechargeDAO, int cardId, int rechargeVal)
 	{
 		List<RechargeModel> recordList = rechargeDAO.findByCardIdDesc(cardId);
 		if (!recordList.isEmpty())

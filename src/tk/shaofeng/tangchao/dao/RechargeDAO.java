@@ -64,7 +64,7 @@ public class RechargeDAO extends AbstractTCDAO
 	 * @return recharge records
 	 */
 	@SuppressWarnings("unchecked")
-	public List<RechargeModel> findByCardIdDesc(long cardId)
+	public List<RechargeModel> findByCardIdDesc(int cardId)
 	{
 		String hql = "from RechargeModel model where model.cardId = ? order by model.rechageDate desc";
 		Session session = getSession();
